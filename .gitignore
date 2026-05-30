@@ -22,3 +22,5 @@ htmlcov/
 .orca-coverage.xml
 .orca/ref/
 .worktrees/
+.claude/settings.local.json
+.claude/settings.json
