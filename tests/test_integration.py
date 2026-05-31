@@ -126,12 +126,12 @@ def test_full_workflow(mock_client):
     neighborhood = client.market.neighborhood(LISTING_ID, PMS)
 
     assert isinstance(neighborhood, NeighborhoodData)
-    assert neighborhood.listings_used == 42
+    assert neighborhood.listings_used == 350
     assert neighborhood.currency == "USD"
-    assert neighborhood.lat == pytest.approx(37.7749)
-    assert neighborhood.lng == pytest.approx(-122.4194)
+    assert neighborhood.lat == pytest.approx(39.8072)
+    assert neighborhood.lng == pytest.approx(-86.1647)
     assert neighborhood.market_kpi is not None
-    assert neighborhood.market_kpi.avg_daily_rate == pytest.approx(185.50)
+    assert len(neighborhood.market_kpi.category) == 3
     logger.info("Step 6 OK: neighborhood=%s", neighborhood.neighborhood_data_source)
 
 
