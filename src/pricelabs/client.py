@@ -9,6 +9,7 @@ from pricelabs.listings import Listings
 from pricelabs.market import Market
 from pricelabs.overrides import Overrides
 from pricelabs.prices import Prices
+from pricelabs.reservations import Reservations
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +50,7 @@ class PriceLabsClient:
         )
         self._overrides = Overrides(self._http)
         self._market = Market(self._http)
+        self._reservations = Reservations(self._http)
         logger.info("PriceLabsClient initialized base_url=%s", resolved_url)
 
     @property
@@ -72,6 +74,11 @@ class PriceLabsClient:
     def prices(self) -> Prices:
         """Access the Prices resource namespace."""
         return Prices(self._http)
+
+    @property
+    def reservations(self) -> Reservations:
+        """Namespace for reservation-related API operations."""
+        return self._reservations
 
     def close(self) -> None:
         """Close the underlying HTTP client and release connections."""
