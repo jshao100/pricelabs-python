@@ -5,6 +5,7 @@ import os
 
 from pricelabs._http import HTTPClient
 from pricelabs.exceptions import ConfigurationError
+from pricelabs.listings import Listings
 from pricelabs.market import Market
 from pricelabs.overrides import Overrides
 
@@ -48,6 +49,13 @@ class PriceLabsClient:
         self._overrides = Overrides(self._http)
         self._market = Market(self._http)
         logger.info("PriceLabsClient initialized base_url=%s", resolved_url)
+
+    @property
+    def listings(self) -> Listings:
+        """Return the Listings resource namespace (lazily initialized)."""
+        if not hasattr(self, "_listings"):
+            self._listings = Listings(self._http)
+        return self._listings
 
     @property
     def overrides(self) -> Overrides:
