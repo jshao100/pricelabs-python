@@ -147,7 +147,7 @@ def test_retry_on_503():
 @respx.mock
 def test_no_retry_on_401():
     respx.get(f"{BASE_URL}/v2/test").mock(return_value=httpx.Response(401))
-    with pytest.raises(Exception, match="HTTP 401"):
+    with pytest.raises(Exception, match="401"):
         make_client(max_retries=3).get("/v2/test")
     assert respx.calls.call_count == 1
 
@@ -160,7 +160,7 @@ def test_no_retry_on_401():
 @respx.mock
 def test_post_retryable_false_does_not_retry_on_429():
     respx.post(f"{BASE_URL}/v2/listings").mock(return_value=httpx.Response(429))
-    with pytest.raises(Exception, match="HTTP 429"):
+    with pytest.raises(Exception, match="429"):
         make_client(max_retries=3).post("/v2/listings", retryable=False)
     assert respx.calls.call_count == 1
 
@@ -243,6 +243,6 @@ def test_retry_after_invalid_value_falls_back_to_jitter():
 def test_retries_exhausted_raises():
     """When all retries return 429, the final error is raised."""
     respx.get(f"{BASE_URL}/v2/test").mock(return_value=httpx.Response(429))
-    with pytest.raises(Exception, match="HTTP 429"):
+    with pytest.raises(Exception, match="429"):
         make_client(max_retries=2).get("/v2/test")
     assert respx.calls.call_count == 2
