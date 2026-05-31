@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Check that all public functions and classes in the given directory have docstrings."""
+"""Check that public functions and classes in a directory have docstrings.
+
+Usage: python3 bin/check_docstrings.py <directory>
+
+Exits 0 if all public symbols have docstrings, 1 otherwise.
+A "public" function or class is one whose name does not start with ``_``.
+"""
 
 import ast
 import sys
@@ -7,58 +13,48 @@ from pathlib import Path
 
 
 def check_file(path: Path) -> list[str]:
-    """Return a list of violation messages for public functions/classes missing docstrings.
-
-    Args:
-        path: Path to a Python source file.
-
-    Returns:
-        List of strings describing each missing-docstring violation.
-    """
-    source = path.read_text(encoding="utf-8")
+    """Return missing-docstring messages for public functions/classes in path."""
     try:
-        tree = ast.parse(source, filename=str(path))
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
     except SyntaxError as exc:
         return [f"{path}: SyntaxError: {exc}"]
 
-    violations = []
+    missing = []
     for node in ast.walk(tree):
-        if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-            continue
-        if node.name.startswith("_"):
-            continue
-        first = node.body[0] if node.body else None
-        has_docstring = isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant)
-        if not has_docstring:
-            violations.append(f"{path}:{node.lineno}: '{node.name}' is missing a docstring")
-    return violations
-
-
-def main(directories: list[str]) -> int:
-    """Check all Python files in the given directories for missing docstrings.
-
-    Args:
-        directories: Paths to directories to scan.
-
-    Returns:
-        Exit code: 0 if no violations, 1 otherwise.
-    """
-    all_violations: list[str] = []
-    for dir_path in directories:
-        p = Path(dir_path)
-        if not p.is_dir():
-            continue
-        for py_file in sorted(p.glob("*.py")):
-            if py_file.name.startswith("_"):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            if node.name.startswith("_"):
                 continue
-            all_violations.extend(check_file(py_file))
+            if not (node.body and isinstance(node.body[0], ast.Expr) and
+                    isinstance(node.body[0].value, ast.Constant) and
+                    isinstance(node.body[0].value.value, str)):
+                missing.append(f"{path}:{node.lineno}: {node.name} missing docstring")
+    return missing
 
-    if all_violations:
-        for v in all_violations:
-            print(v)
-        return 1
-    return 0
+
+def main() -> None:
+    """Entry point: check all .py files in the given directory."""
+    if len(sys.argv) < 2:
+        print("Usage: check_docstrings.py <directory>", file=sys.stderr)
+        sys.exit(1)
+
+    target = Path(sys.argv[1])
+    if not target.exists():
+        sys.exit(0)  # no bin/ directory means nothing to check
+
+    this_file = Path(__file__).resolve()
+    failures: list[str] = []
+    for py_file in sorted(target.rglob("*.py")):
+        if py_file.resolve() == this_file:
+            continue
+        failures.extend(check_file(py_file))
+
+    if failures:
+        for line in failures:
+            print(line, file=sys.stderr)
+        sys.exit(1)
+
+    sys.exit(0)
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    main()
