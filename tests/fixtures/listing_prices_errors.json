@@ -1,0 +1,12 @@
+[
+  {
+    "id": "d4e5f6a7-b8c9-0123-def0-234567890123",
+    "pms": "airbnb",
+    "status": "LISTING_NOT_PRESENT"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-1234-ef01-345678901234",
+    "pms": "ownerrez",
+    "status": "LISTING_TOGGLE_OFF"
+  }
+]

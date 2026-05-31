@@ -1,0 +1,25 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "pms": "airbnb",
+    "name": "Cozy Downtown Loft - 2BR",
+    "rateplans": {
+      "standard": {
+        "name": "Standard Rate",
+        "type": "base",
+        "default": true,
+        "plan_type": "nightly",
+        "adjustment": 0,
+        "update_type": "absolute"
+      },
+      "weekly_discount": {
+        "name": "Weekly Stay Discount",
+        "type": "discount",
+        "default": false,
+        "plan_type": "weekly",
+        "adjustment": -10,
+        "update_type": "percent"
+      }
+    }
+  }
+]

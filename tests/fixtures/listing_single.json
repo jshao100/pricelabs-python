@@ -1,0 +1,44 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "pms": "airbnb",
+  "name": "Cozy Downtown Loft - 2BR",
+  "lat": 37.7749,
+  "lng": -122.4194,
+  "country": "US",
+  "city_name": "San Francisco",
+  "state": "CA",
+  "no_of_bedrooms": 2,
+  "channel_listing_details": [
+    {
+      "channel": "airbnb",
+      "listing_id": "12345678",
+      "listing_url": "https://www.airbnb.com/rooms/12345678"
+    },
+    {
+      "channel": "vrbo",
+      "listing_id": "87654321",
+      "listing_url": "https://www.vrbo.com/87654321"
+    }
+  ],
+  "min": 85,
+  "base": 175,
+  "max": 450,
+  "group": "San Francisco Properties",
+  "subgroup": "Downtown",
+  "tags": ["pet-friendly", "superhost", "instant-book"],
+  "notes": "High demand property near Union Square",
+  "isHidden": false,
+  "push_enabled": true,
+  "occupancy_next_7": 85.71,
+  "occupancy_next_30": 73.33,
+  "occupancy_next_60": 68.33,
+  "occupancy_next_90": 65.56,
+  "market_occupancy_next_7": 78.5,
+  "market_occupancy_next_30": 71.2,
+  "market_occupancy_next_60": 66.8,
+  "market_occupancy_next_90": 63.1,
+  "revenue_past_7": 1225.0,
+  "recommended_base_price": 180,
+  "last_date_pushed": "2026-05-29",
+  "last_refreshed_at": "2026-05-30T08:15:00Z"
+}

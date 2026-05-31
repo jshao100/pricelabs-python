@@ -1,0 +1,489 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "pms": "airbnb",
+    "group": "San Francisco Properties",
+    "currency": "USD",
+    "last_refreshed_at": "2026-05-30T08:15:00Z",
+    "los_pricing": {
+      "1": 175,
+      "3": 165,
+      "7": 155
+    },
+    "data": [
+      {
+        "date": "2026-06-01",
+        "price": 175,
+        "user_price": null,
+        "uncustomized_price": 175,
+        "min_stay": 2,
+        "booking_status": "available",
+        "ADR": 185.5,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.10,
+        "monthly_discount": 0.15,
+        "extra_person_fee": 25,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "green",
+        "demand_desc": "High demand",
+        "reason": {
+          "market_factors": {
+            "local_events": ["Pride Parade", "Tech Conference"],
+            "seasonality_score": 0.82,
+            "day_of_week_multiplier": 1.15,
+            "lead_time_days": 2,
+            "supply_demand_ratio": 0.73
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": 85,
+            "max_price": 450,
+            "base_price": 175,
+            "health_score": 0.91
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T08:00:00Z",
+            "signal_count": 14,
+            "confidence": "high"
+          }
+        }
+      },
+      {
+        "date": "2026-06-02",
+        "price": 195,
+        "user_price": 195,
+        "uncustomized_price": 175,
+        "min_stay": 2,
+        "booking_status": "available",
+        "ADR": 195.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.10,
+        "monthly_discount": 0.15,
+        "extra_person_fee": 25,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "green",
+        "demand_desc": "High demand",
+        "reason": {
+          "market_factors": {
+            "local_events": ["Pride Parade"],
+            "seasonality_score": 0.85,
+            "day_of_week_multiplier": 1.20,
+            "lead_time_days": 3,
+            "supply_demand_ratio": 0.68
+          },
+          "pricing_customizations": {
+            "user_override": true,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": 85,
+            "max_price": 450,
+            "base_price": 175,
+            "health_score": 0.88
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T08:00:00Z",
+            "signal_count": 12,
+            "confidence": "high"
+          }
+        }
+      },
+      {
+        "date": "2026-06-03",
+        "price": 220,
+        "user_price": null,
+        "uncustomized_price": 220,
+        "min_stay": 3,
+        "booking_status": "booked",
+        "ADR": 220.0,
+        "unbookable": false,
+        "booked_date": "2026-04-15",
+        "weekly_discount": 0.10,
+        "monthly_discount": 0.15,
+        "extra_person_fee": 25,
+        "check_in": false,
+        "check_out": false,
+        "demand_color": "yellow",
+        "demand_desc": "Medium demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.71,
+            "day_of_week_multiplier": 1.25,
+            "lead_time_days": 45,
+            "supply_demand_ratio": 0.81
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": 85,
+            "max_price": 450,
+            "base_price": 175,
+            "health_score": 0.79
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T08:00:00Z",
+            "signal_count": 10,
+            "confidence": "medium"
+          }
+        }
+      },
+      {
+        "date": "2026-06-04",
+        "price": 220,
+        "user_price": null,
+        "uncustomized_price": 220,
+        "min_stay": 3,
+        "booking_status": "booked",
+        "ADR": 220.0,
+        "unbookable": false,
+        "booked_date": "2026-04-15",
+        "weekly_discount": 0.10,
+        "monthly_discount": 0.15,
+        "extra_person_fee": 25,
+        "check_in": false,
+        "check_out": false,
+        "demand_color": "yellow",
+        "demand_desc": "Medium demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.69,
+            "day_of_week_multiplier": 1.10,
+            "lead_time_days": 46,
+            "supply_demand_ratio": 0.80
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": 85,
+            "max_price": 450,
+            "base_price": 175,
+            "health_score": 0.77
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T08:00:00Z",
+            "signal_count": 10,
+            "confidence": "medium"
+          }
+        }
+      },
+      {
+        "date": "2026-06-05",
+        "price": 145,
+        "user_price": null,
+        "uncustomized_price": 145,
+        "min_stay": 2,
+        "booking_status": "available",
+        "ADR": 148.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.10,
+        "monthly_discount": 0.15,
+        "extra_person_fee": 25,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "red",
+        "demand_desc": "Low demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.45,
+            "day_of_week_multiplier": 0.90,
+            "lead_time_days": 6,
+            "supply_demand_ratio": 1.12
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": true,
+            "orphan_day_discount": true,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": 85,
+            "max_price": 450,
+            "base_price": 175,
+            "health_score": 0.52
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T08:00:00Z",
+            "signal_count": 8,
+            "confidence": "low"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "pms": "ownerrez",
+    "group": null,
+    "currency": "USD",
+    "last_refreshed_at": "2026-05-30T07:00:00Z",
+    "los_pricing": {
+      "1": 120,
+      "7": 110
+    },
+    "data": [
+      {
+        "date": "2026-06-01",
+        "price": 120,
+        "user_price": null,
+        "uncustomized_price": 120,
+        "min_stay": 1,
+        "booking_status": "available",
+        "ADR": 122.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.05,
+        "monthly_discount": 0.10,
+        "extra_person_fee": 0,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "green",
+        "demand_desc": "High demand",
+        "reason": {
+          "market_factors": {
+            "local_events": ["Summer Festival"],
+            "seasonality_score": 0.78,
+            "day_of_week_multiplier": 1.05,
+            "lead_time_days": 2,
+            "supply_demand_ratio": 0.75
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": null,
+            "max_price": null,
+            "base_price": 120,
+            "health_score": 0.83
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T07:00:00Z",
+            "signal_count": 9,
+            "confidence": "high"
+          }
+        }
+      },
+      {
+        "date": "2026-06-02",
+        "price": 120,
+        "user_price": null,
+        "uncustomized_price": 120,
+        "min_stay": 1,
+        "booking_status": "available",
+        "ADR": 122.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.05,
+        "monthly_discount": 0.10,
+        "extra_person_fee": 0,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "green",
+        "demand_desc": "High demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.76,
+            "day_of_week_multiplier": 1.08,
+            "lead_time_days": 3,
+            "supply_demand_ratio": 0.77
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": null,
+            "max_price": null,
+            "base_price": 120,
+            "health_score": 0.81
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T07:00:00Z",
+            "signal_count": 9,
+            "confidence": "high"
+          }
+        }
+      },
+      {
+        "date": "2026-06-03",
+        "price": 130,
+        "user_price": 130,
+        "uncustomized_price": 120,
+        "min_stay": 2,
+        "booking_status": "available",
+        "ADR": 130.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.05,
+        "monthly_discount": 0.10,
+        "extra_person_fee": 0,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "yellow",
+        "demand_desc": "Medium demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.62,
+            "day_of_week_multiplier": 1.25,
+            "lead_time_days": 4,
+            "supply_demand_ratio": 0.88
+          },
+          "pricing_customizations": {
+            "user_override": true,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": false,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": null,
+            "max_price": null,
+            "base_price": 120,
+            "health_score": 0.70
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T07:00:00Z",
+            "signal_count": 7,
+            "confidence": "medium"
+          }
+        }
+      },
+      {
+        "date": "2026-06-04",
+        "price": 95,
+        "user_price": null,
+        "uncustomized_price": 95,
+        "min_stay": 1,
+        "booking_status": "available",
+        "ADR": 97.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.05,
+        "monthly_discount": 0.10,
+        "extra_person_fee": 0,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "red",
+        "demand_desc": "Low demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.38,
+            "day_of_week_multiplier": 0.88,
+            "lead_time_days": 5,
+            "supply_demand_ratio": 1.25
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": true,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": null,
+            "max_price": null,
+            "base_price": 120,
+            "health_score": 0.44
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T07:00:00Z",
+            "signal_count": 6,
+            "confidence": "low"
+          }
+        }
+      },
+      {
+        "date": "2026-06-05",
+        "price": 95,
+        "user_price": null,
+        "uncustomized_price": 95,
+        "min_stay": 1,
+        "booking_status": "available",
+        "ADR": 97.0,
+        "unbookable": false,
+        "booked_date": null,
+        "weekly_discount": 0.05,
+        "monthly_discount": 0.10,
+        "extra_person_fee": 0,
+        "check_in": true,
+        "check_out": true,
+        "demand_color": "red",
+        "demand_desc": "Low demand",
+        "reason": {
+          "market_factors": {
+            "local_events": [],
+            "seasonality_score": 0.36,
+            "day_of_week_multiplier": 0.85,
+            "lead_time_days": 6,
+            "supply_demand_ratio": 1.28
+          },
+          "pricing_customizations": {
+            "user_override": false,
+            "gap_fill_applied": false,
+            "orphan_day_discount": false,
+            "last_minute_discount": true,
+            "far_future_premium": false
+          },
+          "thresholds": {
+            "min_price": null,
+            "max_price": null,
+            "base_price": 120,
+            "health_score": 0.42
+          },
+          "debug_info": {
+            "model_version": "v3.2.1",
+            "computed_at": "2026-05-30T07:00:00Z",
+            "signal_count": 6,
+            "confidence": "low"
+          }
+        }
+      }
+    ]
+  }
+]

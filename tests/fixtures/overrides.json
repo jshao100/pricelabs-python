@@ -1,0 +1,64 @@
+{
+  "overrides": [
+    {
+      "date": "2026-06-14",
+      "price": "200",
+      "price_type": "fixed",
+      "min_stay": 2,
+      "min_price": null,
+      "max_price": null,
+      "check_in_check_out_enabled": "0",
+      "check_in": null,
+      "check_out": null,
+      "currency": "USD",
+      "reason": "Weekend event pricing",
+      "created_at": "2026-05-01T10:00:00Z",
+      "updated_at": "2026-05-01T10:00:00Z"
+    },
+    {
+      "date": "2026-07-04",
+      "price": "25",
+      "price_type": "percent",
+      "min_stay": 3,
+      "min_price": "150",
+      "max_price": "400",
+      "check_in_check_out_enabled": "0",
+      "check_in": null,
+      "check_out": null,
+      "currency": "USD",
+      "reason": "Independence Day premium",
+      "created_at": "2026-04-15T14:30:00Z",
+      "updated_at": "2026-05-10T09:15:00Z"
+    },
+    {
+      "date": "2026-06-21",
+      "price": "180",
+      "price_type": "fixed",
+      "min_stay": 2,
+      "min_price": null,
+      "max_price": null,
+      "check_in_check_out_enabled": "1",
+      "check_in": "1111100",
+      "check_out": "1111111",
+      "currency": "USD",
+      "reason": "Weekend check-in only",
+      "created_at": "2026-05-20T08:00:00Z",
+      "updated_at": "2026-05-20T08:00:00Z"
+    },
+    {
+      "date": "2026-08-15",
+      "price": "160",
+      "price_type": null,
+      "min_stay": null,
+      "min_price": null,
+      "max_price": null,
+      "check_in_check_out_enabled": "0",
+      "check_in": null,
+      "check_out": null,
+      "currency": "USD",
+      "reason": null,
+      "created_at": "2026-05-28T16:45:00Z",
+      "updated_at": "2026-05-28T16:45:00Z"
+    }
+  ]
+}

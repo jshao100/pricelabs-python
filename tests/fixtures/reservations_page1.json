@@ -1,0 +1,54 @@
+{
+  "pms_name": "airbnb",
+  "next_page": true,
+  "data": [
+    {
+      "listing_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "listing_name": "Cozy Downtown Loft - 2BR",
+      "reservation_id": "r1a2b3c4-d5e6-7890-abcd-ef1234567890",
+      "check_in": "2026-06-10",
+      "check_out": "2026-06-14",
+      "booked_date": "2026-05-15",
+      "booking_status": "booked",
+      "rental_revenue": 700.00,
+      "total_cost": 735.00,
+      "no_of_days": 4,
+      "currency": "USD",
+      "cleaning_fees": 85.00,
+      "booking_channel": "Airbnb",
+      "channelConfirmationCode": "HMXYZ12345"
+    },
+    {
+      "listing_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "listing_name": "Cozy Downtown Loft - 2BR",
+      "reservation_id": "r2b3c4d5-e6f7-8901-bcde-f12345678901",
+      "check_in": "2026-06-20",
+      "check_out": "2026-06-22",
+      "booked_date": "2026-05-22",
+      "booking_status": "booked",
+      "rental_revenue": 350.00,
+      "total_cost": 385.00,
+      "no_of_days": 2,
+      "currency": "USD",
+      "cleaning_fees": 85.00,
+      "booking_channel": "Airbnb",
+      "channelConfirmationCode": "HMXYZ67890"
+    },
+    {
+      "listing_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "listing_name": "Beach Cottage",
+      "reservation_id": "r3c4d5e6-f7a8-9012-cdef-123456789012",
+      "check_in": "2026-07-04",
+      "check_out": "2026-07-11",
+      "booked_date": "2026-05-10",
+      "booking_status": "booked",
+      "rental_revenue": 910.00,
+      "total_cost": 960.00,
+      "no_of_days": 7,
+      "currency": "USD",
+      "cleaning_fees": 75.00,
+      "booking_channel": "Airbnb",
+      "channelConfirmationCode": "HMXYZ11223"
+    }
+  ]
+}
