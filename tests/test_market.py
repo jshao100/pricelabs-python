@@ -1,13 +1,21 @@
-"""Tests for the PriceLabs neighborhood/market data models."""
+"""Tests for the PriceLabs neighborhood/market data models and Market namespace."""
+
+import httpx
 
 from pricelabs.market import (
     BedroomCategory,
     DataSection,
+    Market,
     MarketKPI,
     NeighborhoodData,
     OccupancyData,
 )
 from tests.conftest import load_fixture
+
+BASE_URL = "https://api.pricelabs.co"
+LISTING_ID = "listing-abc"
+PMS = "airbnb"
+NEIGHBORHOOD_PATH = "/v1/neighborhood_data"
 
 
 def _fixture() -> dict:
@@ -203,3 +211,43 @@ class TestNeighborhoodData:
         assert "1" in summary.category
         assert "2" in summary.category
         assert len(summary.labels) == 5
+
+
+class TestMarketNamespace:
+    """Tests for the Market namespace class."""
+
+    def test_neighborhood_sends_correct_get(self, mock_client):
+        """neighborhood() sends GET to /v1/neighborhood_data with pms and listing_id params."""
+        client, respx_mock = mock_client
+        fixture = load_fixture("neighborhood_data")
+        respx_mock.get(f"{BASE_URL}{NEIGHBORHOOD_PATH}").mock(
+            return_value=httpx.Response(200, json={"data": fixture})
+        )
+
+        client.market.neighborhood(LISTING_ID, PMS)
+
+        req = respx_mock.calls.last.request
+        assert req.method == "GET"
+        assert f"pms={PMS}" in str(req.url)
+        assert f"listing_id={LISTING_ID}" in str(req.url)
+
+    def test_neighborhood_parses_into_neighborhood_data(self, mock_client):
+        """neighborhood() parses the response data envelope into NeighborhoodData."""
+        client, respx_mock = mock_client
+        fixture = load_fixture("neighborhood_data")
+        respx_mock.get(f"{BASE_URL}{NEIGHBORHOOD_PATH}").mock(
+            return_value=httpx.Response(200, json={"data": fixture})
+        )
+
+        result = client.market.neighborhood(LISTING_ID, PMS)
+
+        assert isinstance(result, NeighborhoodData)
+        assert result.listings_used == 42
+        assert result.currency == "USD"
+        assert result.market_kpi is not None
+        assert result.market_kpi.avg_daily_rate == 185.50
+
+    def test_client_market_property_returns_market_instance(self, mock_client):
+        """client.market returns a Market instance."""
+        client, _ = mock_client
+        assert isinstance(client.market, Market)

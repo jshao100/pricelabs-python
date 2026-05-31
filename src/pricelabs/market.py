@@ -1,4 +1,4 @@
-"""Pydantic models for the PriceLabs neighborhood/market data API response."""
+"""Pydantic models and namespace for the PriceLabs neighborhood/market data API."""
 
 from __future__ import annotations
 
@@ -6,6 +6,8 @@ import logging
 from typing import Any, ClassVar
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from pricelabs._http import HTTPClient
 
 logger = logging.getLogger(__name__)
 
@@ -92,3 +94,34 @@ class NeighborhoodData(BaseModel):
     market_kpi: MarketKPI | None = Field(None, alias="Market KPI")
 
     model_config = ConfigDict(populate_by_name=True, extra="allow")
+
+
+class Market:
+    """Resource namespace for neighborhood/market data.
+
+    Args:
+        http: Configured HTTP transport client.
+    """
+
+    def __init__(self, http: HTTPClient) -> None:
+        """Initialise the Market namespace with an HTTP client."""
+        self._http = http
+
+    def neighborhood(self, listing_id: str, pms: str) -> NeighborhoodData:
+        """Fetch neighborhood data for a listing.
+
+        Args:
+            listing_id: PriceLabs listing identifier.
+            pms: Property management system identifier (e.g. ``"airbnb"``).
+
+        Returns:
+            Parsed ``NeighborhoodData`` for the listing.
+        """
+        logger.info("Fetching neighborhood data listing_id=%s pms=%s", listing_id, pms)
+        data = self._http.get(
+            "/v1/neighborhood_data",
+            params={"pms": pms, "listing_id": listing_id},
+        )
+        result = NeighborhoodData.model_validate(data["data"])
+        logger.info("Fetched neighborhood data listing_id=%s", listing_id)
+        return result

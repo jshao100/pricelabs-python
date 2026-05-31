@@ -5,6 +5,7 @@ import os
 
 from pricelabs._http import HTTPClient
 from pricelabs.exceptions import ConfigurationError
+from pricelabs.market import Market
 from pricelabs.overrides import Overrides
 
 logger = logging.getLogger(__name__)
@@ -45,12 +46,18 @@ class PriceLabsClient:
             max_retries=max_retries,
         )
         self._overrides = Overrides(self._http)
+        self._market = Market(self._http)
         logger.info("PriceLabsClient initialized base_url=%s", resolved_url)
 
     @property
     def overrides(self) -> Overrides:
         """Namespace for date-specific override (DSO) operations."""
         return self._overrides
+
+    @property
+    def market(self) -> Market:
+        """Namespace for neighborhood/market data operations."""
+        return self._market
 
     def close(self) -> None:
         """Close the underlying HTTP client and release connections."""
