@@ -6,9 +6,9 @@
     "currency": "USD",
     "last_refreshed_at": "2026-05-30T08:15:00Z",
     "los_pricing": {
-      "1": 175,
-      "3": 165,
-      "7": 155
+      "1": {"los_night": 1, "max_price": 200.0, "min_price": 150.0, "los_adjustment": 0.0},
+      "3": {"los_night": 3, "max_price": 190.0, "min_price": 140.0, "los_adjustment": -0.05},
+      "7": {"los_night": 7, "max_price": 180.0, "min_price": 130.0, "los_adjustment": -0.10}
     },
     "data": [
       {
@@ -19,7 +19,7 @@
         "min_stay": 2,
         "booking_status": "available",
         "ADR": 185.5,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.10,
         "monthly_discount": 0.15,
@@ -38,7 +38,7 @@
         "min_stay": 2,
         "booking_status": "available",
         "ADR": 195.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.10,
         "monthly_discount": 0.15,
@@ -57,7 +57,7 @@
         "min_stay": 3,
         "booking_status": "booked",
         "ADR": 220.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": "2026-04-15",
         "weekly_discount": 0.10,
         "monthly_discount": 0.15,
@@ -76,7 +76,7 @@
         "min_stay": 3,
         "booking_status": "booked",
         "ADR": 220.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": "2026-04-15",
         "weekly_discount": 0.10,
         "monthly_discount": 0.15,
@@ -95,7 +95,7 @@
         "min_stay": 2,
         "booking_status": "available",
         "ADR": 148.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.10,
         "monthly_discount": 0.15,
@@ -115,8 +115,8 @@
     "currency": "USD",
     "last_refreshed_at": "2026-05-30T07:00:00Z",
     "los_pricing": {
-      "1": 120,
-      "7": 110
+      "1": {"los_night": 1, "max_price": 140.0, "min_price": 100.0, "los_adjustment": 0.0},
+      "7": {"los_night": 7, "max_price": 130.0, "min_price": 90.0, "los_adjustment": -0.08}
     },
     "data": [
       {
@@ -127,7 +127,7 @@
         "min_stay": 1,
         "booking_status": "available",
         "ADR": 122.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.05,
         "monthly_discount": 0.10,
@@ -146,7 +146,7 @@
         "min_stay": 1,
         "booking_status": "available",
         "ADR": 122.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.05,
         "monthly_discount": 0.10,
@@ -165,7 +165,7 @@
         "min_stay": 2,
         "booking_status": "available",
         "ADR": 130.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.05,
         "monthly_discount": 0.10,
@@ -184,7 +184,7 @@
         "min_stay": 1,
         "booking_status": "available",
         "ADR": 97.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.05,
         "monthly_discount": 0.10,
@@ -203,7 +203,7 @@
         "min_stay": 1,
         "booking_status": "available",
         "ADR": 97.0,
-        "unbookable": false,
+        "unbookable": 0,
         "booked_date": null,
         "weekly_discount": 0.05,
         "monthly_discount": 0.10,

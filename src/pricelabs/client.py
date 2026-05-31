@@ -8,6 +8,7 @@ from pricelabs.exceptions import ConfigurationError
 from pricelabs.listings import Listings
 from pricelabs.market import Market
 from pricelabs.overrides import Overrides
+from pricelabs.prices import Prices
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +67,11 @@ class PriceLabsClient:
     def market(self) -> Market:
         """Namespace for neighborhood/market data operations."""
         return self._market
+
+    @property
+    def prices(self) -> Prices:
+        """Access the Prices resource namespace."""
+        return Prices(self._http)
 
     def close(self) -> None:
         """Close the underlying HTTP client and release connections."""
