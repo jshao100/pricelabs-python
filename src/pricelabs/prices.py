@@ -3,7 +3,7 @@
 import logging
 from typing import Any, cast
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 from pricelabs._http import HTTPClient
 
@@ -46,6 +46,100 @@ class LOSPricing(BaseModel):
     los_adjustment: float
 
 
+class MarketFactors(BaseModel):
+    """Market-level pricing signals for a given day.
+
+    Attributes:
+        local_events: Events influencing demand on this date.
+        seasonality_score: Seasonality adjustment factor (0–1).
+        day_of_week_multiplier: Price multiplier based on day of week.
+        lead_time_days: Days between today and the stay date.
+        supply_demand_ratio: Ratio of supply to demand (>1 means oversupply).
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    local_events: list[str] | None = None
+    seasonality_score: float | None = None
+    day_of_week_multiplier: float | None = None
+    lead_time_days: int | None = None
+    supply_demand_ratio: float | None = None
+
+
+class PricingCustomizations(BaseModel):
+    """User-applied pricing customizations active on a given day.
+
+    Attributes:
+        user_override: Whether a manual price override is in effect.
+        gap_fill_applied: Whether a gap-fill discount was applied.
+        orphan_day_discount: Whether an orphan-day discount was applied.
+        last_minute_discount: Whether a last-minute discount was applied.
+        far_future_premium: Whether a far-future premium was applied.
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    user_override: bool | None = None
+    gap_fill_applied: bool | None = None
+    orphan_day_discount: bool | None = None
+    last_minute_discount: bool | None = None
+    far_future_premium: bool | None = None
+
+
+class Thresholds(BaseModel):
+    """Price floor, ceiling, and health metrics for a given day.
+
+    Attributes:
+        min_price: Minimum price floor (None if not set).
+        max_price: Maximum price cap (None if not set).
+        base_price: Base price before adjustments.
+        health_score: Model confidence / health score (0–1).
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    min_price: float | None = None
+    max_price: float | None = None
+    base_price: float | None = None
+    health_score: float | None = None
+
+
+class DebugInfo(BaseModel):
+    """Internal pricing model debug metadata.
+
+    Attributes:
+        model_version: Version string of the pricing model.
+        computed_at: ISO 8601 timestamp when the price was computed.
+        signal_count: Number of signals used to compute the price.
+        confidence: Confidence level (e.g. ``high``, ``medium``, ``low``).
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    model_version: str | None = None
+    computed_at: str | None = None
+    signal_count: int | None = None
+    confidence: str | None = None
+
+
+class PriceReason(BaseModel):
+    """Top-level pricing breakdown returned when ``reason=True`` is requested.
+
+    Attributes:
+        market_factors: Market-level pricing signals.
+        pricing_customizations: User-applied customizations.
+        thresholds: Min/max price thresholds and health score.
+        debug_info: Internal model debug data.
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    market_factors: MarketFactors | None = None
+    pricing_customizations: PricingCustomizations | None = None
+    thresholds: Thresholds | None = None
+    debug_info: DebugInfo | None = None
+
+
 class PriceDay(BaseModel):
     """Price and availability data for a single calendar day.
 
@@ -70,7 +164,7 @@ class PriceDay(BaseModel):
         check_out: Whether check-out is permitted on this day.
         demand_color: Demand indicator colour (``green``, ``yellow``, ``red``).
         demand_desc: Human-readable demand description.
-        reason: Raw reason data dict; typed in full by Task 7b.
+        reason: Structured pricing breakdown; populated when ``reason=True`` is requested.
     """
 
     date: str
@@ -93,7 +187,7 @@ class PriceDay(BaseModel):
     check_out: bool | None
     demand_color: str | None
     demand_desc: str | None
-    reason: dict | None = None
+    reason: PriceReason | None = None
 
 
 class ListingPrices(BaseModel):

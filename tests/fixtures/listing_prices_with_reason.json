@@ -6,9 +6,9 @@
     "currency": "USD",
     "last_refreshed_at": "2026-05-30T08:15:00Z",
     "los_pricing": {
-      "1": 175,
-      "3": 165,
-      "7": 155
+      "1": {"los_night": 1, "max_price": 200.0, "min_price": 150.0, "los_adjustment": 0.0},
+      "3": {"los_night": 3, "max_price": 190.0, "min_price": 140.0, "los_adjustment": -0.05},
+      "7": {"los_night": 7, "max_price": 180.0, "min_price": 130.0, "los_adjustment": -0.10}
     },
     "data": [
       {
@@ -250,8 +250,8 @@
     "currency": "USD",
     "last_refreshed_at": "2026-05-30T07:00:00Z",
     "los_pricing": {
-      "1": 120,
-      "7": 110
+      "1": {"los_night": 1, "max_price": 150.0, "min_price": 100.0, "los_adjustment": 0.0},
+      "7": {"los_night": 7, "max_price": 140.0, "min_price": 90.0, "los_adjustment": -0.08}
     },
     "data": [
       {
