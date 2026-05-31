@@ -167,26 +167,28 @@ class PriceDay(BaseModel):
         reason: Structured pricing breakdown; populated when ``reason=True`` is requested.
     """
 
+    model_config = ConfigDict(extra="allow")
+
     date: str
     price: float
-    user_price: float | None
-    uncustomized_price: float | None
-    min_stay: int
-    booking_status: str | None
+    user_price: float | None = None
+    uncustomized_price: float | None = None
+    min_stay: int | None = None
+    booking_status: str | None = None
     booking_status_STLY: str | None = None
-    ADR: float | None
+    ADR: float | None = None
     ADR_STLY: float | None = None
-    unbookable: int | None
-    booked_date: str | None
+    unbookable: int | None = None
+    booked_date: str | None = None
     booked_date_STLY: str | None = None
-    weekly_discount: float | None
-    monthly_discount: float | None
-    extra_person_fee: float | None
+    weekly_discount: float | None = None
+    monthly_discount: float | None = None
+    extra_person_fee: float | None = None
     extra_person_fee_trigger: int | None = None
-    check_in: bool | None
-    check_out: bool | None
-    demand_color: str | None
-    demand_desc: str | None
+    check_in: bool | None = None
+    check_out: bool | None = None
+    demand_color: str | None = None
+    demand_desc: str | None = None
     reason: PriceReason | None = None
 
 
@@ -208,13 +210,15 @@ class ListingPrices(BaseModel):
         error_status: Set when the API returned an error status for this listing.
     """
 
+    model_config = ConfigDict(extra="allow")
+
     id: str
     pms: str
-    group: str | None
-    currency: str
-    last_refreshed_at: str | None
-    los_pricing: dict[str, LOSPricing] | None
-    data: list[PriceDay]
+    group: str | None = None
+    currency: str | None = None
+    last_refreshed_at: str | None = None
+    los_pricing: dict[str, LOSPricing] | None = None
+    data: list[PriceDay] = []
     error_status: str | None = None
 
 

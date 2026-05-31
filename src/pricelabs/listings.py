@@ -60,6 +60,21 @@ class Listing(BaseModel):
     last_date_pushed: str | None = None
     last_refreshed_at: str | None = None
 
+    @field_validator(
+        "occupancy_next_7", "occupancy_next_30", "occupancy_next_60", "occupancy_next_90",
+        "market_occupancy_next_7", "market_occupancy_next_30", "market_occupancy_next_60",
+        "market_occupancy_next_90",
+        mode="before",
+    )
+    @classmethod
+    def coerce_percent_string(cls, v: Any) -> float | None:
+        """Strip '%' suffix from percentage strings like '43 %'."""
+        if v is None:
+            return None
+        if isinstance(v, str):
+            return float(v.replace("%", "").strip())
+        return v
+
     @field_validator("recommended_base_price", mode="before")
     @classmethod
     def coerce_recommended_base_price(cls, v: Any) -> str | None:
