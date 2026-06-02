@@ -64,10 +64,10 @@ class Reservations:
 
     def list(
         self,
-        pms: str | None = None,
+        pms: str,
+        start_date: str,
+        end_date: str,
         listing_id: str | None = None,
-        start_date: str | None = None,
-        end_date: str | None = None,
         limit: int = 100,
         offset: int = 0,
         include_hidden: bool = False,
@@ -75,10 +75,10 @@ class Reservations:
         """Fetch a single page of reservations from the API.
 
         Args:
-            pms: Filter by property management system name.
+            pms: Property management system name (required).
+            start_date: Return reservations with check-in on or after this date, YYYY-MM-DD (required).
+            end_date: Return reservations with check-out on or before this date, YYYY-MM-DD (required).
             listing_id: Filter to a specific listing.
-            start_date: Return reservations with check-in on or after this date (YYYY-MM-DD).
-            end_date: Return reservations with check-out on or before this date (YYYY-MM-DD).
             limit: Maximum number of records per page. Defaults to 100.
             offset: Number of records to skip. Defaults to 0.
             include_hidden: When True, include hidden listings. Defaults to False.
@@ -87,18 +87,15 @@ class Reservations:
             A ``Page[Reservation]`` containing the current slice of results.
         """
         params: dict = {
+            "pms": pms,
+            "start_date": start_date,
+            "end_date": end_date,
             "limit": limit,
             "offset": offset,
             "include_hidden": include_hidden,
         }
-        if pms is not None:
-            params["pms"] = pms
         if listing_id is not None:
             params["listing_id"] = listing_id
-        if start_date is not None:
-            params["start_date"] = start_date
-        if end_date is not None:
-            params["end_date"] = end_date
 
         logger.info("Fetching reservations offset=%d limit=%d", offset, limit)
         raw = self._http.get("/v1/reservation_data", params=params)

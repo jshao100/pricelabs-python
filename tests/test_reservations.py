@@ -15,7 +15,7 @@ def test_list_parses_page(mock_client):
     fixture = load_fixture("reservations_page1")
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=fixture))
 
-    page = client.reservations.list()
+    page = client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
 
     assert len(page.data) == 3
     assert page.next_page is True
@@ -28,7 +28,7 @@ def test_list_parses_reservation_fields(mock_client):
     fixture = load_fixture("reservations_page1")
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=fixture))
 
-    page = client.reservations.list()
+    page = client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
     r = page.data[0]
 
     assert r.listing_id == "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
@@ -58,7 +58,7 @@ def test_list_passes_required_default_params(mock_client):
     fixture = load_fixture("reservations_page1")
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=fixture))
 
-    client.reservations.list()
+    client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
 
     url = str(respx_mock.calls.last.request.url)
     assert "limit=100" in url
@@ -90,19 +90,19 @@ def test_list_passes_optional_params(mock_client):
     assert "offset=10" in url
 
 
-def test_list_omits_none_params(mock_client):
-    """list() does not send params that were not provided."""
+def test_list_omits_optional_params(mock_client):
+    """list() does not send listing_id when not provided."""
     client, respx_mock = mock_client
     fixture = load_fixture("reservations_page1")
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=fixture))
 
-    client.reservations.list()
+    client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
 
     url = str(respx_mock.calls.last.request.url)
-    assert "pms=" not in url
+    assert "pms=airbnb" in url
+    assert "start_date=2026-01-01" in url
+    assert "end_date=2026-12-31" in url
     assert "listing_id=" not in url
-    assert "start_date=" not in url
-    assert "end_date=" not in url
 
 
 # ---------------------------------------------------------------------------
@@ -122,7 +122,7 @@ def test_list_all_iterates_two_pages(mock_client):
     ])
     respx_mock.get("/v1/reservation_data").mock(side_effect=lambda req: next(responses))
 
-    results = list(client.reservations.list_all(limit=3))
+    results = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31", limit=3))
 
     assert len(results) == 5  # 3 from page1 + 2 from page2
     assert results[0].reservation_id == "r1a2b3c4-d5e6-7890-abcd-ef1234567890"
@@ -142,7 +142,7 @@ def test_list_all_increments_offset(mock_client):
     ])
     respx_mock.get("/v1/reservation_data").mock(side_effect=lambda req: next(responses))
 
-    list(client.reservations.list_all(limit=3))
+    list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31", limit=3))
 
     first_url = str(respx_mock.calls[0].request.url)
     second_url = str(respx_mock.calls[1].request.url)
@@ -157,7 +157,7 @@ def test_list_all_stops_when_next_page_false(mock_client):
 
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=page2))
 
-    results = list(client.reservations.list_all())
+    results = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"))
 
     assert len(results) == 2
     assert respx_mock.calls.call_count == 1
@@ -174,7 +174,7 @@ def test_cancelled_reservation_has_cancelled_on(mock_client):
     fixture = load_fixture("reservations_page2")
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=fixture))
 
-    page = client.reservations.list()
+    page = client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
     cancelled = next(r for r in page.data if r.booking_status == "cancelled")
 
     assert cancelled.cancelled_on == "2026-05-25"
@@ -187,7 +187,7 @@ def test_booked_reservation_cancelled_on_is_none(mock_client):
     fixture = load_fixture("reservations_page1")
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=fixture))
 
-    page = client.reservations.list()
+    page = client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
     for r in page.data:
         assert r.cancelled_on is None
 
@@ -203,7 +203,7 @@ def test_empty_data_returns_empty_page(mock_client):
     empty = {"data": [], "next_page": False, "pms_name": None}
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=empty))
 
-    page = client.reservations.list()
+    page = client.reservations.list(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31")
 
     assert page.data == []
     assert page.next_page is False
@@ -215,6 +215,6 @@ def test_empty_data_list_all_yields_nothing(mock_client):
     empty = {"data": [], "next_page": False, "pms_name": None}
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=empty))
 
-    results = list(client.reservations.list_all())
+    results = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"))
 
     assert results == []

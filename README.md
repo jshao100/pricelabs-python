@@ -181,7 +181,7 @@ for reservation in page.data:
 has_more = page.next_page
 
 # Auto-paginate all results
-for reservation in client.reservations.list_all(pms="airbnb", start_date="2026-01-01"):
+for reservation in client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"):
     print(reservation.reservation_id, reservation.rental_revenue)
 ```
 
