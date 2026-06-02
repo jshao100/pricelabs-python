@@ -154,7 +154,7 @@ def test_get_sends_correct_post_body(mock_client):
     body = json.loads(route.calls.last.request.content)
     assert "listings" in body
     assert body["listings"][0]["id"] == "abc"
-    assert body["listings"][0]["date_from"] == "2026-06-01"
+    assert body["listings"][0]["dateFrom"] == "2026-06-01"
 
 
 # ---------------------------------------------------------------------------
