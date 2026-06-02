@@ -139,7 +139,8 @@ class Listings:
         """
         logger.info("Fetching listing id=%s", listing_id)
         data = self._http.get(f"/v1/listings/{listing_id}")
-        listing = Listing.model_validate(data)
+        items = data.get("listings", [data])
+        listing = Listing.model_validate(items[0])
         logger.info("Fetched listing id=%s", listing_id)
         return listing
 
