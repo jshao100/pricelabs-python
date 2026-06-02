@@ -3,7 +3,7 @@
 import logging
 from typing import Any, cast
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from pricelabs._http import HTTPClient
 
@@ -23,10 +23,12 @@ class PriceRequest(BaseModel):
         reason: When True, the API includes pricing reason data in the response.
     """
 
+    model_config = ConfigDict(populate_by_name=True)
+
     id: str
     pms: str
-    date_from: str | None = None
-    date_to: str | None = None
+    date_from: str | None = Field(None, alias="dateFrom")
+    date_to: str | None = Field(None, alias="dateTo")
     reason: bool = False
 
 
@@ -249,7 +251,7 @@ class Prices:
             One ``ListingPrices`` per input listing, in response order.
         """
         body: dict[str, Any] = {
-            "listings": [r.model_dump(exclude_none=True) for r in listings]
+            "listings": [r.model_dump(exclude_none=True, by_alias=True) for r in listings]
         }
         logger.info("Fetching prices for %d listings", len(listings))
         raw = cast(
