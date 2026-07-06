@@ -122,7 +122,9 @@ def test_list_all_iterates_two_pages(mock_client):
     ])
     respx_mock.get("/v1/reservation_data").mock(side_effect=lambda req: next(responses))
 
-    results = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31", limit=3))
+    results = list(client.reservations.list_all(
+        pms="airbnb", start_date="2026-01-01", end_date="2026-12-31", limit=3,
+    ))
 
     assert len(results) == 5  # 3 from page1 + 2 from page2
     assert results[0].reservation_id == "r1a2b3c4-d5e6-7890-abcd-ef1234567890"
@@ -142,7 +144,9 @@ def test_list_all_increments_offset(mock_client):
     ])
     respx_mock.get("/v1/reservation_data").mock(side_effect=lambda req: next(responses))
 
-    list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31", limit=3))
+    list(client.reservations.list_all(
+        pms="airbnb", start_date="2026-01-01", end_date="2026-12-31", limit=3,
+    ))
 
     first_url = str(respx_mock.calls[0].request.url)
     second_url = str(respx_mock.calls[1].request.url)
@@ -157,7 +161,9 @@ def test_list_all_stops_when_next_page_false(mock_client):
 
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=page2))
 
-    results = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"))
+    results = list(client.reservations.list_all(
+        pms="airbnb", start_date="2026-01-01", end_date="2026-12-31",
+    ))
 
     assert len(results) == 2
     assert respx_mock.calls.call_count == 1
@@ -215,6 +221,8 @@ def test_empty_data_list_all_yields_nothing(mock_client):
     empty = {"data": [], "next_page": False, "pms_name": None}
     respx_mock.get("/v1/reservation_data").mock(return_value=httpx.Response(200, json=empty))
 
-    results = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"))
+    results = list(client.reservations.list_all(
+        pms="airbnb", start_date="2026-01-01", end_date="2026-12-31",
+    ))
 
     assert results == []

@@ -109,7 +109,9 @@ def test_full_workflow(mock_client):
 
     respx_mock.get("/v1/reservation_data").mock(side_effect=_reservation_handler)
 
-    all_reservations = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"))
+    all_reservations = list(client.reservations.list_all(
+        pms="airbnb", start_date="2026-01-01", end_date="2026-12-31",
+    ))
 
     expected_count = len(page1["data"]) + len(page2["data"])
     assert len(all_reservations) == expected_count
@@ -177,7 +179,9 @@ def test_reservations_pagination_yields_all_pages(mock_client):
 
     respx_mock.get("/v1/reservation_data").mock(side_effect=_handler)
 
-    result = list(client.reservations.list_all(pms="airbnb", start_date="2026-01-01", end_date="2026-12-31"))
+    result = list(client.reservations.list_all(
+        pms="airbnb", start_date="2026-01-01", end_date="2026-12-31",
+    ))
 
     assert len(result) == len(page1["data"]) + len(page2["data"])
     # Page 2's reservations appear after page 1's

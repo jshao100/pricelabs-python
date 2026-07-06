@@ -4,6 +4,7 @@ import logging
 import os
 
 from pricelabs._http import HTTPClient
+from pricelabs.customizations import Customizations
 from pricelabs.exceptions import ConfigurationError
 from pricelabs.listings import Listings
 from pricelabs.market import Market
@@ -49,6 +50,7 @@ class PriceLabsClient:
             max_retries=max_retries,
         )
         self._overrides = Overrides(self._http)
+        self._customizations = Customizations(self._http)
         self._market = Market(self._http)
         self._reservations = Reservations(self._http)
         logger.info("PriceLabsClient initialized base_url=%s", resolved_url)
@@ -59,6 +61,11 @@ class PriceLabsClient:
         if not hasattr(self, "_listings"):
             self._listings = Listings(self._http)
         return self._listings
+
+    @property
+    def customizations(self) -> Customizations:
+        """Namespace for listing customization operations."""
+        return self._customizations
 
     @property
     def overrides(self) -> Overrides:

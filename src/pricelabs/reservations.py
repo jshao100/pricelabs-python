@@ -76,8 +76,10 @@ class Reservations:
 
         Args:
             pms: Property management system name (required).
-            start_date: Return reservations with check-in on or after this date, YYYY-MM-DD (required).
-            end_date: Return reservations with check-out on or before this date, YYYY-MM-DD (required).
+            start_date: Return reservations with check-in on or after
+                this date, YYYY-MM-DD (required).
+            end_date: Return reservations with check-out on or before
+                this date, YYYY-MM-DD (required).
             listing_id: Filter to a specific listing.
             limit: Maximum number of records per page. Defaults to 100.
             offset: Number of records to skip. Defaults to 0.

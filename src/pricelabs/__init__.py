@@ -2,6 +2,7 @@
 
 from pricelabs._version import __version__
 from pricelabs.client import PriceLabsClient
+from pricelabs.customizations import ListingCustomizations
 from pricelabs.exceptions import (
     APIError,
     AuthenticationError,
@@ -41,6 +42,7 @@ __all__ = [
     "PriceRequest",
     "ListingPrices",
     "PriceDay",
+    "ListingCustomizations",
     "DateSpecificOverride",
     "OverrideInput",
     "Reservation",
